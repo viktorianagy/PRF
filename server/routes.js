@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const exampleModel = mongoose.model('example');
 const userModel = mongoose.model('user');
 const termekModel = mongoose.model('termek');
+//const adminModel = mongoose.model('admin');
 
 router.route('/login').post((req, res, next) => {
     if(req.body.username, req.body.password) {
