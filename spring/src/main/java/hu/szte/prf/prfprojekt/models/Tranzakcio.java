@@ -1,25 +1,36 @@
 package hu.szte.prf.prfprojekt.models;
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tranzakciok")
 public class Tranzakcio {
+    private int id;
     private int termekid;
     private int datum;
     private int osszeg;
 
-    //private Termek termek;
 
     public Tranzakcio() {
     }
 
-    public Tranzakcio(int termekid, int datum, int osszeg) {
+    public Tranzakcio(int id, int termekid, int datum, int osszeg) {
+        this.id = id;
         this.termekid = termekid;
         this.datum = datum;
-        this.osszeg = osszeg;
+        this.osszeg =  0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getTermekId() {
@@ -42,8 +53,11 @@ public class Tranzakcio {
         return osszeg;
     }
 
-    public void setOsszeg(int osszeg) {
-        this.osszeg = osszeg;
+    public void setOsszeg(List<Termek> termekek) {
+        this.osszeg = 0;
+        for(Termek termek: termekek) {
+            osszeg = osszeg + termek.getAr();
+        }
     }
 
     @Override

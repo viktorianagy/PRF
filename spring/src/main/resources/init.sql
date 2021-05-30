@@ -4,4 +4,4 @@ DROP SEQUENCE IF EXISTS hibernate_sequence;
 CREATE SEQUENCE hibernate_sequence START 1;
 
 DROP TABLE IF EXISTS tranzakciok;
-CREATE TABLE tranzakciok(datum DATE, termekid INTEGER, osszeg INTEGER);
+CREATE TABLE tranzakciok(id PRIMARY KEY, datum DATE, termekid INTEGER, osszeg INTEGER);

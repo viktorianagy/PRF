@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import hu.szte.prf.prfprojekt.models.Termek;
-import hu.szte.prf.prfprojekt.models.TermekService;
+import hu.szte.prf.prfprojekt.models.Tranzakcio;
+import hu.szte.prf.prfprojekt.models.TranzakcioService;
 
 @RestController
 @RequestMapping
 @CrossOrigin(origins = "*")
-public class TermekController {
-    TermekService termekService;
+public class TranzakcioContoller {
+    TranzakcioService tranzakcioService;
 
     @Autowired
-    public TermekController(TermekService termekService) {
-        this.termekService = termekService;
+    public TranzakcioContoller(TranzakcioService tranzakcioService) {
+        this.tranzakcioService = tranzakcioService;
     }
 
     @GetMapping("/")
@@ -31,10 +31,10 @@ public class TermekController {
         return "Hello World!";
     }
 
-    @PostMapping(path="/termek", consumes = "application/json")
-    public String newTermek(@RequestBody Termek termek) {
+    @PostMapping(path="/tranzakcio", consumes = "application/json")
+    public String newTranzakcio(@RequestBody Tranzakcio tranzakcio) {
         try {
-            this.termekService.addTermek(termek);
+            this.tranzakcioService.addTranzakcio(tranzakcio);
             return "Success";
         } catch (Exception e) {
             System.out.println(e);
@@ -42,30 +42,30 @@ public class TermekController {
         }
     }
 
-    @GetMapping("/termekek")
-    public List<Termek> getAllTranzakcio() {
+    @GetMapping("/tranzakciok")
+    public List<Tranzakcio> getAllTranzakcio() {
         try {
-            return this.termekService.getAllTermek();
+            return this.tranzakcioService.getAllTranzakcio();
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
 
-    @GetMapping("/termek")
-    public Termek getTermekById(@RequestParam int id) {
+    @GetMapping("/tranzakcio")
+    public Tranzakcio getTranzakcioById(@RequestParam int id) {
         try {
-            return this.termekService.getTermekById(id);
+            return this.tranzakcioService.getTranzakcioById(id);
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
 
-    @DeleteMapping("/termek")
-    public String deleteTermekById(@RequestParam int id) {
+    @DeleteMapping("/tranzakcio")
+    public String deleteTranzakcioById(@RequestParam int id) {
         try {
-            this.termekService.deleteTermekById(id);
+            this.tranzakcioService.deleteTranzakcioById(id);
             return "Delete Successful";
         } catch (Exception e) {
             System.out.println(e);
