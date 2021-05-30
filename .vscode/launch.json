@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PrfprojektApplication<prfprojekt>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "hu.szte.prf.prfprojekt.PrfprojektApplication",
+            "projectName": "prfprojekt",
+            "args": ""
+        }
+    ]
+}
