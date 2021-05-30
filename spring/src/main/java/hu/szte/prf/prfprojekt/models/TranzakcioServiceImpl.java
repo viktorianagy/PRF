@@ -4,28 +4,33 @@ import java.util.List;
 
 public class TranzakcioServiceImpl implements TranzakcioService{
 
+    TranzakcioRepository tranzakcioRepository;
+
+    public TranzakcioServiceImpl(TranzakcioRepository tranzakcioRepository) {
+        this.tranzakcioRepository = tranzakcioRepository;
+    }
+
     @Override
     public void addTranzakcio(Tranzakcio tranzakcio) {
-        
+        this.tranzakcioRepository.save(tranzakcio);
         
     }
 
     @Override
     public List<Tranzakcio> getAllTranzakcio() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Tranzakcio> list = this.tranzakcioRepository.findAll();
+        return list;
     }
 
     @Override
     public Tranzakcio getTranzakcioById(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        Tranzakcio tranzakcio = this.tranzakcioRepository.findById(id).get();
+        return tranzakcio;
     }
 
     @Override
     public void deleteTranzakcioById(int id) {
-        // TODO Auto-generated method stub
-        
+        this.tranzakcioRepository.deleteById(id);
     }
     
 }
