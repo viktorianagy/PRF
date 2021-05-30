@@ -11,11 +11,15 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  email: string;
 
   constructor(private loginService: LoginService, private router: Router) { 
     this.username = '';
     this.password = '';
+    this.email = '';
   }
+
+  e = false;
 
   login() {
     if (this.username != '' && this.password != '') {
@@ -27,6 +31,24 @@ export class LoginComponent implements OnInit {
         console.log(error);
       })
     }
+
+    if(this.e === true) {
+      this.e = false;
+    } 
+  }
+
+  registration() {
+    console.log(this.username);
+    if(this.username != '' && this.email != '' && this.password != '') {
+      this.loginService.registration(this.username, this.email, this.password).subscribe(msg => {
+        console.log(msg);
+      }, error => {
+        console.log(error);
+      })
+    }
+    if(this.e === false) {
+      this.e = true;
+    } 
   }
 
   ngOnInit(): void {

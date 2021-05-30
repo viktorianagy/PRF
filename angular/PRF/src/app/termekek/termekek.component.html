@@ -1,11 +1,21 @@
 <div class="content" role="main">
 
     <!-- Highlight Card -->
-    <div class="card highlight-card card-small" (click) = "hello()">
-  
+    <div class="card highlight-card card-small" (click) = termekListazas()>
+
+
       <span>Termekek</span>
+      
   
     </div>
+    <table *ngIf="k == true">
+      <tr *ngFor="let x of termeklista">
+         <td>{{x.name}}</td>
+         <td>{{x.price}} Ft</td>
+       </tr>
+     </table>
+  
+      
     <button (click)="goToFizetes()">Tovább a fizetésre</button>
     <a [routerLink]="['/login']">Kijelentkezés</a>
   </div>>

@@ -1,28 +1,28 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-var adminSchema = new mongoose.Schema({
-    username: {type: String, unique: true, required: true, lowercase: true},
+var adminuserSchema = new mongoose.Schema({
+    adminname: {type: String, unique: true, required: true, lowercase: true},
     password: {type: String, required: true},
     email: {type: String, required: true},
     accessLevel: {type: String}
 }, {collection: 'admins'});
 
-adminSchema.pre('save', function(next) {
-    const admin = this;
-    if(user.isModified('password')) {
-        user.accessLevel = 'admin';
+adminuserSchema.pre('save', function(next) {
+    const adminuser = this;
+    if(adminuser.isModified('password')) {
+        adminuser.accessLevel = 'admin';
         bcrypt.genSalt(10, function(err, salt) {
             if(err) {
                 console.log('hiba a salt generalasa soran');
                 return next(error);
             }
-            bcrypt.hash(user.password, salt, function(error, hash) {
+            bcrypt.hash(adminuser.password, salt, function(error, hash) {
                 if(error) {
                     console.log('hiba a hasheles soran');
                     return next(error);
                 }
-                user.password = hash;
+                adminuser.password = hash;
                 return next();
             })
         })
@@ -32,10 +32,10 @@ adminSchema.pre('save', function(next) {
     }
 });
 
-adminSchema.methods.comparePasswords = function(password, nx) {
+adminuserSchema.methods.comparePasswords = function(password, nx) {
     bcrypt.compare(password, this.password, function(err, isMatch) {
         nx(err, isMatch);
     });
 };
 
-mongoose.model('admin', adminSchema);
+mongoose.model('adminuser', adminuserSchema);

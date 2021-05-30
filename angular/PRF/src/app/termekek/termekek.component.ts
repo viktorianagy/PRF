@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ConnectionService } from '../utils/connection.service';
+import { TermekService } from '../utils/termek.service';
+
+interface Termekek {
+  id: number;
+  name: string;
+  price: number
+}
 
 @Component({
   selector: 'app-termekek',
@@ -10,26 +18,36 @@ import { ConnectionService } from '../utils/connection.service';
 })
 export class TermekekComponent implements OnInit {
 
-  constructor(private connectionService: ConnectionService, private router: Router) {
-    console.log(environment);
+  constructor(private connectionService: ConnectionService, private router: Router, private termekService: TermekService) {
   }
 
   title = 'WEBSHOP';
+
+  termeklista: Termekek[] = [];
+
+  k = true;
 
   goToFizetes() {
     this.router.navigate(['/fizetes', 'Webshop', {message: this.title}]);
   }
 
-  hello() {
-		console.log('Hello!');
-    this.connectionService.greet().subscribe(data => {
-      console.log('This came from the server: ', data);
-    }, error => {
-      console.log('Sorry, we encountered an error: ', error);
+  termekListazas(){
+    this.termekService.getAllTermek().subscribe((termek) => {
+      this.termeklista = [];
+      for(const i of termek) {
+        this.termeklista.push(i);
+      }
+    if(this.k === false) {
+      this.k = true;
+    } else {
+      this.k = false;
+    }
+    
     });
-	}
+  }
 
   ngOnInit(): void {
+    this.termekListazas();
   }
 
 }

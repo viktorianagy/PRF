@@ -30,9 +30,9 @@ var corsOptions = {
     'Origin', 'Accept']
   };
 
-require('./example.model');
-require('./user.model');
-require('./termek.model')
+const User = require('./user.model');
+require('./termek.model');
+require('./adminuser.model')
   
 const userModel = mongoose.model('user');
 
@@ -53,6 +53,7 @@ passport.use('local', new localStrategy(function (username, password, done) {
         })
     })
 }));
+
 
 passport.serializeUser(function (user, done) {
     if (!user) return done('nincs megadva beléptethető felhasználó', null);

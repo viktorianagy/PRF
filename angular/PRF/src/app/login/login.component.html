@@ -1,12 +1,19 @@
 <div class="content" role="main">
-    <h2>Bejelentkezés</h2>
+    <h2 *ngIf="e == false">Bejelentkezés</h2>
+    <h2 *ngIf="e == true">Regisztráció</h2>
     <div>
         <label>Felhasználónév</label>
         <input type="text" id="username" [(ngModel)]="username">
+    </div>
+    <div *ngIf="e == true" >
+        <label>E-mail</label>
+        <input type="text" id="email" [(ngModel)]="email">
     </div>
     <div>
         <label>Jelszó</label>
         <input type="password" id="password" [(ngModel)]="password">
     </div>
     <button (click)="login()">BEJELENTKEZÉS</button>
+    <button (click)="registration()">REGISZTRÁCIÓ</button>
+    
 </div>

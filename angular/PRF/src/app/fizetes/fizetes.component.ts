@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class FizetesComponent implements OnInit {
 
   message = '';
+  vasarlasmsg = '';
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
@@ -18,6 +19,10 @@ export class FizetesComponent implements OnInit {
     }, error => {
       console.log('parammap error', error);
     })
+   }
+
+   vasarlas() {
+      this.vasarlasmsg = 'A vásárlás sikeres volt.'
    }
 
   ngOnInit(): void {
