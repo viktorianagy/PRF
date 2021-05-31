@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+
+interface Termekek {
+  id: number;
+  name: string;
+  price: number
+}
 
 
 @Component({
@@ -8,4 +15,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
  
+
 }

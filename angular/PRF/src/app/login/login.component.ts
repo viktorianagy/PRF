@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   e = false;
 
   login() {
+
     if (this.username != '' && this.password != '') {
       this.loginService.login(this.username, this.password).subscribe(msg => {
         console.log(msg);
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
 
   registration() {
     console.log(this.username);
+
     if(this.username != '' && this.email != '' && this.password != '') {
       this.loginService.registration(this.username, this.email, this.password).subscribe(msg => {
         console.log(msg);
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
         console.log(error);
       })
     }
+    
     if(this.e === false) {
       this.e = true;
     } 

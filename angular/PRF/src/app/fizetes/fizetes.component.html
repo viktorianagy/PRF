@@ -6,6 +6,14 @@
       <span>Fizetes</span>
   
     </div>
+
+    <table>
+      <tr *ngFor="let x of kosar">
+         <td>{{x.name}}</td>
+         <td>{{x.price}} Ft</td>
+       </tr>
+     </table>
+
     <button (click)="vasarlas()">Vásárlás</button>
      {{vasarlasmsg}}
     <a [routerLink]="['/termekek']">Vissza a termékekhez</a>

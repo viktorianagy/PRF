@@ -43,7 +43,7 @@ public class TermekController {
     }
 
     @GetMapping("/termekek")
-    public List<Termek> getAllTranzakcio() {
+    public List<Termek> getAllTermek() {
         try {
             return this.termekService.getAllTermek();
         } catch (Exception e) {
